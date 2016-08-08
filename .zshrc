@@ -31,3 +31,22 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 # Dot files tracking
 alias poconf='git --git-dir=$HOME/.poconf/ --work-tree=$HOME'
+
+# —————————————————————————————————————————————————————————————————————
+# Ctrl+Z
+# —————————————————————————————————————————————————————————————————————
+# - On an empty command line, runs bg (so that Ctrl+Z Ctrl+Z suspends
+#   a program and immediately resumes it in the background).
+# - On a non-empty command line, suspend the current command edition:
+#   let me type another command, and when that second command line
+#   finished, I get back the first command to edit.
+fancy-ctrl-z() {
+  if [[ $#BUFFER -eq 0 ]]; then
+    bg
+    zle redisplay
+  else
+    zle push-input
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
