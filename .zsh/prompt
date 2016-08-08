@@ -1,0 +1,26 @@
+# zsh prompt configuration
+
+function precmd {
+	# Check last command exit status
+	PR_RET=$?
+	if [[ $PR_RET -gt 0 ]] ; then
+		PR_RET="[$PR_RET]"
+	else
+		PR_RET=""
+	fi
+}
+
+setprompt () {
+	setopt prompt_subst
+
+	autoload colors
+	if [[ "$terminfo[colors]" -gt  8 ]] ; then
+		colors
+	fi
+	autoload promptinit && promptinit
+
+	PROMPT='%{$fg[red]%}${PR_RET}%{$fg[green]%} %%%f%{$reset_color%} '
+	RPROMPT='%{$fg[red]%}${VIMODE}%{$fg[yellow]%}${PR_JOBS} %f${PR_GIT}%{$fg[blue]%}%~%f%{$reset_color%}'
+}
+
+setprompt
