@@ -29,6 +29,9 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
+
+export LESS='-R -M --shift 5 -F'
+
 # Dot files tracking
 alias poconf='git --git-dir=$HOME/.poconf/ --work-tree=$HOME'
 
