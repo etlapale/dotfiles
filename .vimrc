@@ -18,6 +18,12 @@ set expandtab
   "NeoBundle 'gabrielelana/vim-markdown'
 "call neobundle#end()
 
+" vim-plug
+call plug#begin('~/.vim/plugged')
+Plug 'gabrielelana/vim-markdown'
+Plug 'hynek/vim-python-pep8-indent'
+call plug#end()
+
 filetype plugin indent on
 
 set wildignore+=*.o,*.pyc,*.hi
