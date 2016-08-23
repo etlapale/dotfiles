@@ -1,0 +1,38 @@
+Xft*dpi: 96
+Xft*antialias: True
+Xft*hinting: Full
+
+!URxvt*font: xft:Fira Mono:pixelsize=13:antialias=true:hinting=true
+URxvt*font: xft:PragmataPro Mono:pixelsize=13:antialias=true:hinting=true
+URxvt.scrollBar: false
+!URxvt.perl-ext-common: default,clipboard,matcher,keyboard-select,tabbedex
+!URxvt.perl-ext-common: default,clipboard,tabbedex
+URxvt.perl-ext-common: default,clipboard
+!URxvt.keysym.M-u: perl:url-select:select-next
+URxvt.underlineURLs: True
+!URxvt.matcher.button: 1
+URXvt.clipboard.autocopy: true
+!URxvt.tabbed.autohide: yes
+!URxvt.tabbed.new-button: no
+!URxvt.tabbed.title: yes
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+URxvt*background: #232829
+URxvt*foreground: #fcfcfc
+URxvt*color0: #232829
+URxvt*color1: #c7238b
+URxvt*color2: #66aa11
+URxvt*color3: #c47f2c
+URxvt*color4: #5050bb
+URxvt*color5: #7e40a5
+URxvt*color6: #3579a8
+URxvt*color7: #9999aa
+URxvt*color8: #303030
+URxvt*color9: #cf3050
+URxvt*color10: #93d173
+URxvt*color11: #ffda66
+URxvt*color12: #4f8fdf
+URxvt*color13: #bea6bb
+URxvt*color14: #aac9e6
+URxvt*color15: #d0d0d0
