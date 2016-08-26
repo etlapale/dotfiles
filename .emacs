@@ -151,5 +151,19 @@
 ;; rtags
 (add-to-list 'load-path "/0/local/share/emacs/site-lisp/rtags")
 (setq rtags-path "/0/local/bin")
-(load "rtags")
+(require 'rtags)
+(require 'company)
+(require 'company-rtags)
 (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
+(setq rtags-completions-enabled t)
+(eval-after-load 'company
+  '(add-to-list
+    'company-backends 'company-rtags))
+(setq rtags-autostart-diagnostics t)
+(rtags-enable-standard-keybindings)
+
+;; compilation shortcut
+(global-set-key (kbd "<f5>") (lambda ()
+                               (interactive)
+                               (setq-local compilation-read-command nil)
+                               (call-interactively 'compile)))
