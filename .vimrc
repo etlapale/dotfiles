@@ -77,14 +77,14 @@ au BufNewFile,BufRead *.vala set filetype=vala cindent
 au BufNewFile,BufRead *.vapi set filetype=vala cindent
 
 " GNU indentation
-au FileType c call PocoIndent() 
+au FileType c call PocoIndent()
 
 " Python indentation
 function! PocoPythonIndent()
   setlocal sw=2
   setlocal expandtab
 endfunction
-au FileType python call PocoPythonIndent() 
+au FileType python call PocoPythonIndent()
 
 " Qt coding style
 function! QtIndent()
@@ -128,10 +128,13 @@ au BufRead,BufNewFile *.rst set tw=79
 " zsh
 au BufRead,BufNewFile */.zsh/* set filetype=zsh
 
+" tmux
+au BufRead,BufNewFile .tmux.conf set filetype=sh
+
 " vim-airline ruler
 " set laststatus=2
 
 " Disable mouse at Airbus since vim has no clipboard support
 " set mouse=""
 
-cd
+" cd
