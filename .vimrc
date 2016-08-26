@@ -47,11 +47,13 @@ if has('gui_running')
   colorscheme pocolors
   set guiheadroom=0
   set mouse=a
-  let g:airline_powerline_fonts = 1
-  set laststatus=2
 else
   colorscheme pocolors
 endif
+
+" Airline
+set laststatus=2
+let g:airline_powerline_fonts=1
 
 set shiftwidth=2
 set tabstop=8
