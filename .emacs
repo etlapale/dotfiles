@@ -116,7 +116,9 @@
 ;;(require 'dash)
 ;;(add-to-list 'load-path "~/.emacs.d/site-lisp/with-editor")
 ;;(add-to-list 'load-path "~/.emacs.d/site-lisp/magit/lisp")
-;;(require 'magit)
+(require 'magit)
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
 
 ;; Manually installed packages
 (let ((default-directory (concat user-emacs-directory
