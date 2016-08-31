@@ -24,8 +24,8 @@
 ;; (set-default-font "Terminus-12")
 ;; (set-default-font "Fira Mono")
 ;; (set-default-font "PragmataPro:pixe")
-;; (set-default-font "PragmataPro:pixelsize=13")
-(set-default-font "Fira Mono:pixelsize=13:antialias=none")
+(set-default-font "PragmataPro:pixelsize=13")
+;; (set-default-font "Fira Mono:pixelsize=13:antialias=none")
 ;; (set-default-font "Dina-12")
  
 ; Theme
