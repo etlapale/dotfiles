@@ -165,7 +165,5 @@
 (rtags-enable-standard-keybindings)
 
 ;; compilation shortcut
-(global-set-key (kbd "<f5>") (lambda ()
-                               (interactive)
-                               (setq-local compilation-read-command nil)
-                               (call-interactively 'compile)))
+(global-set-key [(C-f5)] 'compile)
+(global-set-key [(f5)] 'recompile)
