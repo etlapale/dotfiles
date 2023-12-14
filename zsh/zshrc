@@ -1,0 +1,61 @@
+# History
+export HISTFILE=$HOME/.zsh/histfile
+export HISTSIZE=30000
+export SAVEHIST=30000
+
+# zinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Auto-completion
+zinit light zsh-users/zsh-autosuggestions
+
+# Syntax highlighting
+zinit light zdharma/fast-syntax-highlighting
+
+# Prompt theme
+zinit ice pick"async.zsh" src"pure.zsh"
+zinit light sindresorhus/pure
+
+# Colors in man pages
+export MANPAGER="less -R --use-color -Dd+b -Du+c"
+
+# MacBook
+if [[ $(uname -s) =~ ^Darwin ]]; then
+    # Nicer listings
+    alias ls='ls -FG'
+fi
+
+bindkey -e
+
+# source ~/.zsh/prompt
+
+# —————————————————————————————————————————————————————————————————————
+# Ctrl+Z
+# —————————————————————————————————————————————————————————————————————
+# - On an empty command line, runs bg (so that Ctrl+Z Ctrl+Z suspends
+#   a program and immediately resumes it in the background).
+# - On a non-empty command line, suspend the current command edition:
+#   let me type another command, and when that second command line
+#   finished, I get back the first command to edit.
+fancy-ctrl-z() {
+  if [[ $#BUFFER -eq 0 ]]; then
+    bg
+    zle redisplay
+  else
+    zle push-input
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
+
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+
+# Local Variables:
+# mode: shell-script
+# End:
