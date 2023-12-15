@@ -24,8 +24,8 @@ export MANPAGER="less -R --use-color -Dd+b -Du+c"
 
 # MacBook
 if [[ $(uname -s) =~ ^Darwin ]]; then
-    # Nicer listings
-    alias ls='ls -FG'
+  # Nicer listings
+  alias ls='ls -FG'
 fi
 
 bindkey -e
@@ -55,6 +55,12 @@ bindkey '^Z' fancy-ctrl-z
 fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
+
+# Local config
+local_config=$HOME/.zsh/zsh.local
+if [[ -e $local_config ]] ; then
+  source $local_config
+fi
 
 # Local Variables:
 # mode: shell-script
