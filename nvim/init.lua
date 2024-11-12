@@ -53,7 +53,27 @@ require("lazy").setup({
     },
   },
   {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    },
+  },
+  {
     "folke/neodev.nvim",
+    opts = {}
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
     opts = {}
   },
   {
@@ -66,6 +86,9 @@ require("lazy").setup({
     opts = {},
   },
   {
+    "folke/zen-mode.nvim",
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-cmdline",
@@ -74,6 +97,9 @@ require("lazy").setup({
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
     },
+  },
+  {
+    "jbyuki/nabla.nvim",
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -96,6 +122,20 @@ require("lazy").setup({
     "lewis6991/gitsigns.nvim",
   },
   {
+    "linux-cultist/venv-selector.nvim",
+    dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
+    events = "VeryLazy",
+    opts = {
+      name = {"amzn-noble-science-[a-zA-Z_\\-]+", ".venv", "venv" },
+      -- enable_debug_output = true,
+    },
+    keys = {
+      { "<leader>vs", "<cmd>VenvSelect<cr>" },
+      { "<leader>vc", "<cmd>VenvSelectCached<cr>" },
+      { "<leader>vC", "<cmd>VenvSelectCurrent<cr>" },
+    },
+  },
+  {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = {},
@@ -110,6 +150,35 @@ require("lazy").setup({
     },
   },
   {
+    "nvim-neorg/neorg",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    lazy = false,
+    config = true,
+    ft = "norg",
+    opts = {
+      load = {
+	["core.defaults"] = {},
+	["core.concealer"] = {
+	  config = {
+	    concealer = 2,
+	    icon_preset = "diamond",
+	    markup = { bold = true, italic = true },
+	  },
+	},
+	["core.dirman"] = {
+	  config = {
+	    workspaces = {
+	      norg = "~/norg",
+	    },
+	  },
+	},
+      }
+    },
+  },
+  {
     "numToStr/Comment.nvim",
     lazy = false,
   },
@@ -117,7 +186,9 @@ require("lazy").setup({
     "nvim-neotest/neotest",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "antoinemadec/FixCursorHold.nvim"
+      "nvim-neotest/nvim-nio",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
     }
   },
   {
@@ -168,7 +239,34 @@ require("lazy").setup({
     dependencies = {"nvim-telescope/telescope.nvim"}
   },
   {
+    "rose-pine/neovim",
+    name = "rose-pine",
+  },
+  {
     "rouge8/neotest-rust",
+  },
+  {
+    "scalameta/nvim-metals",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    ft = { "scala", "sbt", "java" },
+  },
+  {
+      "scottmckendry/cyberdream.nvim",
+      lazy = false,
+      priority = 1000,
+  },
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1000,
+    config = true,
+    opts = {
+      rocks = {
+	"lua-utils.nvim",
+	"pathlib.nvim",
+      },
+    }
   },
   {
     "williamboman/mason.nvim",
@@ -315,3 +413,20 @@ require("neotest").setup {
     require("neotest-rust")
   }
 }
+
+-- cyberdream theme
+require("cyberdream").setup {
+  transparent = true,
+  theme = {
+    variant = "light",
+  }
+}
+
+-- Nabla (LaTeX preview)
+vim.keymap.set("n", "<leader>p", require("nabla").popup)
+
+-- Neovide (Mac GUI)
+if vim.g.neovide then
+  vim.o.guifont = "Hack Nerd Font Mono:h13"
+  vim.g.neovide_transparency = 0.92
+end

@@ -5,4 +5,5 @@
 - clean: ['~']
 - link:
     ~/.config/nvim: nvim
+    ~/.config/wezterm: wezterm
     ~/.zshrc: zsh/zshrc
